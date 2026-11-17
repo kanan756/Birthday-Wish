@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="description" content="Aesthetic Animated Birthday Wishes For Best Friend" />
+  <meta name="theme-color" content="#0d0b18" />
+  
+  <title>Many More Happiest Birthday! ✨</title>
+  
+  <!-- Aesthetic Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;0,800;1,400&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="style.css" />
+  
+  <!-- Canvas Confetti -->
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+</head>
+<body>
+
+  <!-- Floating Ambient Orbs & Running Balloons Background -->
+  <div class="sky-background" id="skyBg"></div>
+  <div class="ambient-glow orb-1"></div>
+  <div class="ambient-glow orb-2"></div>
+  <div class="ambient-glow orb-3"></div>
+
+  <!-- Header -->
+  <header class="aesthetic-header">
+    <div class="brand-chip">
+      <span class="pulsing-heart">💖</span>
+      <span class="brand-text">For My Best Friend</span>
+    </div>
+    
+    <div class="header-actions">
+      <button id="editNameBtn" class="pill-btn glass" title="Change Best Friend's Name">
+        <span>✏️</span> <span id="currentNameLabel">Bestie</span>
+      </button>
+      <button id="audioToggleBtn" class="pill-btn glass" title="Play / Mute Birthday Melody">
+        <span id="musicIcon">🎵</span> <span id="musicText">Sound On</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Interactive Story Progression Container -->
+  <main class="main-wrapper">
+
+    <!-- STEP 1: The Aesthetic Mystery Gift Box -->
+    <section class="scene active" id="scene-gift">
+      <div class="gift-showcase">
+        <div class="gift-badge">
+          <span>✨ Surprise Just For You ✨</span>
+        </div>
+        
+        <h2 class="aesthetic-title">A special delivery has arrived...</h2>
+        <p class="aesthetic-subtitle">Filled with heartfelt wishes, endless memories, and warm love.</p>
+
+        <!-- 3D Aesthetic Gift Box -->
+        <div class="gift-box-wrapper" id="giftBox">
+          <div class="click-hint-tag">Tap to Open 🎁</div>
+          <div class="gift-box">
+            <div class="gift-lid">
+              <!-- Elegant Vector SVG Bow with Ribbon Tails -->
+              <svg class="gift-bow-svg" viewBox="0 0 100 65" xmlns="http://www.w3.org/2000/svg">
+                <!-- Left Ribbon Loop -->
+                <path d="M 50,32 C 30,8 6,10 14,34 C 20,48 42,38 50,32 Z" fill="url(#goldGradient)" filter="drop-shadow(0 2px 4px rgba(0,0,0,0.25))" />
+                <!-- Right Ribbon Loop -->
+                <path d="M 50,32 C 70,8 94,10 86,34 C 80,48 58,38 50,32 Z" fill="url(#goldGradient)" filter="drop-shadow(0 2px 4px rgba(0,0,0,0.25))" />
+                <!-- Left Hanging Ribbon Tail -->
+                <path d="M 44,36 Q 28,48 20,62 Q 35,56 46,40 Z" fill="#eab308" opacity="0.9" />
+                <!-- Right Hanging Ribbon Tail -->
+                <path d="M 56,36 Q 72,48 80,62 Q 65,56 54,40 Z" fill="#ca8a04" opacity="0.9" />
+                <!-- Center Knot -->
+                <circle cx="50" cy="33" r="10" fill="url(#knotGradient)" filter="drop-shadow(0 2px 6px rgba(0,0,0,0.3))" />
+                <defs>
+                  <linearGradient id="goldGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="#fef08a" />
+                    <stop offset="45%" stop-color="#fde047" />
+                    <stop offset="100%" stop-color="#ca8a04" />
+                  </linearGradient>
+                  <linearGradient id="knotGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="#fffbeb" />
+                    <stop offset="60%" stop-color="#facc15" />
+                    <stop offset="100%" stop-color="#b45309" />
+                  </linearGradient>
+                </defs>
+              </svg>
+              <div class="lid-ribbon"></div>
+            </div>
+            <div class="gift-body">
+              <div class="body-ribbon-v"></div>
+              <div class="body-ribbon-h"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="action-footer">
+          <p class="hint-pulse">✨ Click the glowing gift box to unwrap your surprise ✨</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- STEP 2: The Main Celebration Hub (Revealed after opening gift) -->
+    <section class="scene hidden" id="scene-celebration">
+      
+      <!-- Aesthetic Polaroid / Glass Card -->
+      <div class="aesthetic-card glassmorphism">
+
+        <!-- Top Delicate Star Header -->
+        <div class="card-top-tag">
+          <span class="tag-star">✦</span>
+          <span>CELEBRATING A VERY SPECIAL DAY</span>
+          <span class="tag-star">✦</span>
+        </div>
+
+        <!-- Hero Greeting -->
+        <div class="hero-wishes">
+          <span class="script-cursive">Wishing You</span>
+          <h1 class="glow-name-heading">
+            <span class="gradient-text">MANY MORE HAPPIEST BIRTHDAY</span>
+          </h1>
+          <p class="warm-subtitle">
+            Happy Birthday, <span id="targetFriendName" class="highlight-name">BESTIE</span>! 💖
+          </p>
+        </div>
+
+        <!-- Interactive Aesthetic Cake with Blow Detection -->
+        <div class="cake-stage">
+          <div class="cake-wrapper" id="interactiveCake" title="Click or blow to extinguish candles!">
+            <div class="candles-row">
+              <div class="candle c-1">
+                <div class="flame" id="flame1"></div>
+                <div class="wick"></div>
+                <div class="candle-stick"></div>
+              </div>
+              <div class="candle c-2">
+                <div class="flame" id="flame2"></div>
+                <div class="wick"></div>
+                <div class="candle-stick"></div>
+              </div>
+              <div class="candle c-3">
+                <div class="flame" id="flame3"></div>
+                <div class="wick"></div>
+                <div class="candle-stick"></div>
+              </div>
+            </div>
+
+            <!-- Cake Tiers with Cream Drips -->
+            <div class="tier tier-top">
+              <div class="strawberries">🍓 🫐 🍓</div>
+            </div>
+            <div class="tier tier-mid"></div>
+            <div class="tier tier-base">
+              <div class="cake-plate"></div>
+            </div>
+          </div>
+
+          <!-- Candle Blow Controls -->
+          <div class="cake-controls">
+            <button id="blowCandleBtn" class="pill-btn action-glow">
+              <span class="wind-icon">💨</span> Blow Out Candles!
+            </button>
+            <button id="micBlowToggle" class="pill-btn mic-btn" title="Blow into your microphone to blow candles!">
+              🎙️ <span id="micLabel">Use Microphone Breath</span>
+            </button>
+          </div>
+          <p id="candleWishStatus" class="wish-status-text">
+            🕯️ <em>Make a wish in your heart, then blow or tap the candles!</em>
+          </p>
+        </div>
+
+        <!-- Floating Running Balloons & Interactive Controls Bar -->
+        <div class="aesthetic-actions">
+          <button id="releaseBalloonsBtn" class="floating-action-btn">
+            🎈 Run More Balloons
+          </button>
+          <button id="sparklerBtn" class="floating-action-btn">
+            ✨ Sparkler Blast
+          </button>
+          <button id="loveLetterBtn" class="floating-action-btn">
+            💌 Secret Letter
+          </button>
+        </div>
+
+        <!-- Secret Letter Accordion -->
+        <div class="letter-box hidden" id="secretLetter">
+          <div class="letter-stamp">A Letter Just For You 💌</div>
+          <p class="letter-text" id="customLetterBody">
+            "Happy Birthday! Thank you for being the one person I can always talk to, vent with, share stupid memes with, and celebrate life alongside. Here's to leveling up another year and making even crazier memories together!"
+          </p>
+          <div class="letter-sign">~ Yours always 💛</div>
+        </div>
+
+      </div>
+    </section>
+  </main>
+
+  <!-- Name Customization Modal -->
+  <div class="modal-backdrop hidden" id="nameModal">
+    <div class="aesthetic-modal">
+      <div class="modal-top">
+        <h3>✨ Personalize For Your Best Friend</h3>
+        <button id="closeModal" class="close-x">&times;</button>
+      </div>
+      <div class="modal-form">
+        <label>Best Friend's Name / Nickname</label>
+        <input type="text" id="nameInput" placeholder="e.g. Alex, Maya, Bro, Bestie" maxlength="24" value="Bestie" />
+        
+        <label>Custom Birthday Message (Optional)</label>
+        <textarea id="noteInput" rows="3" placeholder="Write something sweet or funny that only both of you understand..."></textarea>
+        
+        <button id="savePersonalize" class="pill-btn action-glow full-width">
+          Save &amp; Celebrate ✨
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
